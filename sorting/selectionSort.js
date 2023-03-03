@@ -27,7 +27,7 @@ const selectionSort = (arr) => {
       if (arr[j] < arr[lowest]) lowest = j;
     }
     
-    if (i === lowest) swap(arr, i, lowest);
+    if (i !== lowest) swap(arr, i, lowest);
   }
 
   return arr;
