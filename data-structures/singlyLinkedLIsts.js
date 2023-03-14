@@ -151,6 +151,7 @@ class SinglyLinkedList {
     let next;
     let prev = null;
 
+    // this part is a little tricky
     for (let i = 0; i < this.length; i++) {
       next = node.next;
       node.next = prev;
