@@ -84,12 +84,12 @@ class SinglyLinkedList {
 
     this.length++;
     return this;
-  }
+}
 
   get(index) {
     if (index < 0 || index >= this.length) return null;
 
-    let counter = 0
+    let counter = 0;
     let current = this.head;
 
     while (counter !== index) {
@@ -108,7 +108,6 @@ class SinglyLinkedList {
     }
 
     return false;
-
   }
 
   insert(index, val) {
@@ -143,22 +142,38 @@ class SinglyLinkedList {
     return removed.val;
   }
 
+  reverse() {
+    // swap the head and the tail
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+
+    let next;
+    let prev = null;
+
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+
+    return this;
+  }
+
+  // function to print list as an array
   print() {
     let arr = [];
     let current = this.head;
 
     while (current) {
       arr.push(current.val);
-      current = current.next
+      current = current.next;
     }
-    
+
     console.log(arr);
   }
 }
-
-
-
-
 
 let list = new SinglyLinkedList();
 
@@ -167,13 +182,7 @@ list.push(200);
 list.push(300);
 list.push(400);
 
-
-// console.log(list.insert(2, 250));
-// console.log(list.remove(0))
-// console.log(list.remove(1))
-// console.log(list.remove(1))
-
-// console.log(list.traverse())
+console.log(list.reverse());
 console.log(list.print())
 
 
