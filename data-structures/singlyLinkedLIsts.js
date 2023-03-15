@@ -16,7 +16,9 @@ class SinglyLinkedList {
   }
 
   push(val) {
+    // instantiate the new node to the class function
     let newNode = new Node(val);
+
     if (!this.head) {
       this.head = newNode;
       this.tail = this.head;
@@ -30,7 +32,7 @@ class SinglyLinkedList {
   }
 
   traverse() {
-    var current = this.head;
+    let current = this.head;
     while (current) {
       console.log(current.val);
       current = current.next;
@@ -39,8 +41,8 @@ class SinglyLinkedList {
 
   pop() {
     if (!this.head) return undefined;
-    let current = this.head;
-    let newTail = current;
+    let current = this.head,
+      newTail = current;
     while (current.next) {
       newTail = current;
       current = current.next;
@@ -69,7 +71,8 @@ class SinglyLinkedList {
       this.head = null;
       this.tail = null;
     }
-    return temp;
+
+    return currentHead;
   }
 
   unshift(val) {
@@ -101,6 +104,7 @@ class SinglyLinkedList {
   }
 
   set(index, val) {
+    // get the index of the node from the get method created earlier
     let foundNode = this.get(index);
     if (foundNode) {
       foundNode.val = val;
@@ -111,13 +115,17 @@ class SinglyLinkedList {
   }
 
   insert(index, val) {
+    // special cases
     if (index < 0 || index > this.length) return false;
     if (index === this.length) return !!this.push(val);
     if (index === 0) return !!this.unshift(val);
 
-    let newNode = new Node(val);
-    let prevNode = this.get(index - 1);
-    let temp = prevNode.next;
+    // put the new node in-between by connecting the next property of the previous node to the new node
+    // also connect the new node to the next node
+    let newNode = new Node(val),
+      prevNode = this.get(index - 1),
+      temp = prevNode.next;
+
     prevNode.next = newNode;
     newNode.next = temp;
     this.length++;
@@ -134,8 +142,9 @@ class SinglyLinkedList {
     // let temp = indexedNode.next;
     // prevNode.next = temp;
 
-    let previousNode = this.get(index - 1);
-    let removed = previousNode.next;
+    let previousNode = this.get(index - 1),
+      removed = previousNode.next;
+     
     previousNode.next = removed.next;
 
     this.length--;
@@ -148,8 +157,8 @@ class SinglyLinkedList {
     this.head = this.tail;
     this.tail = node;
 
-    let next;
-    let prev = null;
+    let next,
+      prev = null;
 
     // this part is a little tricky
     for (let i = 0; i < this.length; i++) {
@@ -164,8 +173,8 @@ class SinglyLinkedList {
 
   // function to print list as an array
   print() {
-    let arr = [];
-    let current = this.head;
+    let arr = [],
+      current = this.head;
 
     while (current) {
       arr.push(current.val);
@@ -183,7 +192,7 @@ list.push(200);
 list.push(300);
 list.push(400);
 
-console.log(list.reverse());
+// console.log(list.reverse());
 console.log(list.print())
 
 
