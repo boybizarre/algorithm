@@ -31,14 +31,6 @@ class SinglyLinkedList {
     return this;
   }
 
-  traverse() {
-    let current = this.head;
-    while (current) {
-      console.log(current.val);
-      current = current.next;
-    }
-  }
-
   pop() {
     if (!this.head) return undefined;
     let current = this.head,
@@ -87,7 +79,7 @@ class SinglyLinkedList {
 
     this.length++;
     return this;
-}
+  }
 
   get(index) {
     if (index < 0 || index >= this.length) return null;
@@ -144,7 +136,7 @@ class SinglyLinkedList {
 
     let previousNode = this.get(index - 1),
       removed = previousNode.next;
-     
+
     previousNode.next = removed.next;
 
     this.length--;
@@ -183,6 +175,14 @@ class SinglyLinkedList {
 
     console.log(arr);
   }
+
+  traverse() {
+    let current = this.head;
+    while (current) {
+      console.log(current.val);
+      current = current.next;
+    }
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -197,3 +197,12 @@ console.log(list.print())
 
 
 console.log(list);
+
+
+
+// BIG O notation of queues
+
+// Insertion - O(1)
+// Removal - it depends... best case O(1) or    worst case O(N)
+// Searching - O(N)
+// Access - O(N)

@@ -81,6 +81,8 @@ class DoublyLinkedList {
   }
 
   get(index) {
+
+    // split it up so we could either loop from the head or the tail depending on which side the index is closer to
     if (index < 0 || index >= this.length) return null;
     let counter, current;
     if (index <= Math.floor(this.length / 2)) {
@@ -202,3 +204,16 @@ list.push(1300);
 
 console.log(list);
 console.log(list.print());
+
+
+
+
+// BIG O notation of queues
+
+// Insertion - O(1)
+// Removal - O(1)
+// Searching - O(N)
+// Access - O(N)
+
+
+// Technically searching is O(N/2) but that's still O(N)
