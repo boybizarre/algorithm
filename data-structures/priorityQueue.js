@@ -1,11 +1,12 @@
-class MaxBinaryHeap {
+class PriorityQueue {
   constructor() {
     this.values = [];
   }
 
-  insert(element) {
-    if (!element) return undefined;
-    this.values.push(element);
+  enqueue(val, priority) {
+    if (!val || !priority) return undefined;
+    let newNode = new Node(val, priority);
+    this.values.push(newNode);
     this.bubbleUp();
   }
 
@@ -18,15 +19,15 @@ class MaxBinaryHeap {
         parent = this.values[parentIdx];
 
       // SWAP
-      if (element <= parent) break;
+      if (element.priority >= parent.priority) break;
       this.values[parentIdx] = element;
       this.values[idx] = parent;
       idx = parentIdx;
     }
   }
 
-  extractMax() {
-    const max = this.values[0];
+  dequeue() {
+    const min = this.values[0];
     const end = this.values.pop();
 
     if (this.values.length > 0) {
@@ -34,7 +35,7 @@ class MaxBinaryHeap {
       this.sinkDown();
     }
 
-    return max;
+    return min;
   }
   //  0   1   2
   // [33, 49, 41, 18, 27, 12];
@@ -51,7 +52,7 @@ class MaxBinaryHeap {
 
       if (leftChildIdx < length) {
         leftChild = this.values[leftChildIdx];
-        if (leftChild > element) {
+        if (leftChild.priority < element.priority) {
           swap = leftChildIdx;
         }
       }
@@ -59,8 +60,8 @@ class MaxBinaryHeap {
       if (rightChildIdx < length) {
         rightChild = this.values[rightChildIdx];
         if (
-          (swap === null && rightChild > element) ||
-          (swap !== null && rightChild > leftChild)
+          (swap === null && rightChild.priority < element.priority) ||
+          (swap !== null && rightChild.priority < leftChild.priority)
         ) {
           swap = rightChildIdx;
         }
@@ -74,16 +75,28 @@ class MaxBinaryHeap {
   }
 }
 
-let heap = new MaxBinaryHeap();
-heap.insert(41);
-heap.insert(39);
-heap.insert(33);
-heap.insert(18);
-heap.insert(27);
-heap.insert(12);
-heap.insert(55);
+class Node {
+  constructor(val, priority) {
+    this.val = val;
+    this.priority = priority;
+  }
+}
 
+let ER = new PriorityQueue();
 
-console.log(heap.extractMax());
+ER.enqueue('Common cold', 5);
+ER.enqueue('Gunshot wound', 1);
+ER.enqueue('Glass in foot', 3);
+ER.enqueue('Broken arm', 2);
+ER.enqueue('High fever', 4);
 
-console.log(heap);
+console.log(ER.dequeue());
+console.log(ER.dequeue());
+console.log(ER.dequeue());
+console.log(ER.dequeue());
+console.log(ER.dequeue());
+
+console.log(ER)
+
+// BIG O notation
+
