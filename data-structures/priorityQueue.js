@@ -97,6 +97,3 @@ console.log(ER.dequeue());
 console.log(ER.dequeue());
 
 console.log(ER)
-
-// BIG O notation
-
