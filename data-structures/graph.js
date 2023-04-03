@@ -52,6 +52,55 @@ class Graph {
     
     return result;
   }
+
+  depthFirstIterative(start) {
+    const stack = [start],
+      result = [],
+      visited = {};
+
+    let currentVertex;
+
+    visited[start] = true;
+    while (stack.length) {
+      // console.log(stack);
+      currentVertex = stack.pop();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          stack.push(neighbor)
+        };
+      });
+    };
+
+
+    return result;
+  }
+
+  breadthFirst(start) {
+    const queue = [start],
+      result = [],
+      visited = {};
+
+    let currentVertex;
+    
+    visited[start] = true;
+    while (queue.length) {
+      // console.log(queue);
+      currentVertex = queue.shift();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
+        };
+      });
+    };
+
+    return result;
+  }
 }
 
 let graph = new Graph();
@@ -74,7 +123,7 @@ graph.addEdge("D","E")
 graph.addEdge("D","F")
 graph.addEdge("E", "F")
 
-graph.depthFirstRecursive("A")
+console.log(graph.breadthFirst("A"));
 
 //          A
 //        /   \
